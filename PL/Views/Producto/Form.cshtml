@@ -1,0 +1,84 @@
+﻿@model ML.Producto
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h2>Alumno</h2>
+    </div>
+</div>
+<div class=" row">
+    <div class="col-md-6">
+    </div>
+</div>
+
+@using (Html.BeginForm("Form", "Producto", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-3">
+
+                        @Html.LabelFor(model => model.IdProducto, new { })
+                        @Html.TextBoxFor(model => model.IdProducto, new { @class = "", autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.IdProducto)
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Nombre, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control"  })
+                        <label class="alert-danger" id="lblNombreError"></label>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Descripcion, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Precio, new { @class = "" })
+                        @Html.TextBoxFor(model => model.Precio, new { @class = "form-control" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.MateriaPrima.IdMateriaPrima)
+                        @Html.DropDownListFor(model => model.MateriaPrima.IdMateriaPrima, new SelectList(Model.MateriaPrima.MateriasPrima, "IdMateriaPRima", "Nombre"), "Selecciona un Area", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MateriaPrima)
+                    </div>
+                </div>
+                <br />
+
+
+                <div class="row">
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+
+                            <input type="submit" value="Guardar" class="btn btn-success" />
+                            @Html.ActionLink("Regresar", "GetAll", "Producto", htmlAttributes: new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
